@@ -14,7 +14,7 @@ status DeletePokedex(Battle b, int NumOfTypes, PT** MasterListTypes);
 
 int main(int argc, char* argv[])
 {
-    /////////////////////// Reading File ///////////////////////
+    /////////////////////// Declaring variables + Reading arguments recivied by the user ///////////////////////
     char* no1 = argv[1];
     char* no2 = argv[2];
     int NumOfTypes , Capacity;
@@ -99,13 +99,7 @@ int main(int argc, char* argv[])
                         insertObject(b, Pokemon);
                         printf("The Pokemon was successfully added.\n");
                         PrintPokemon(Pokemon);
-
-
-                        //                if (sean == failure)
-                        //                    printf("Type at full capacity.\n");
-
                         memset(type, 0, sizeof(type));
-                        //                DeletePokemon(Pokemon);
                         break;
 
                         case 4:
@@ -187,7 +181,7 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-
+///////////////////// Reading File /////////////////////////
 Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterListTypes)
 {
     FILE* f;
@@ -207,7 +201,6 @@ Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterL
     fgets(buffer, 300, f); // Fire,Electric,Grass, etc...
     strtok(buffer, "\r\n");
     char TempInfo[300];
-//    char* TempType;
     strcpy(TempInfo, buffer);
 
     b = createBattleByCategory
@@ -216,10 +209,6 @@ Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterL
              (getCategoryFunction)getCat,(getAttackFunction) getAttack,(printFunction) PrintPokemon);
 
 
-    //    while (fgets(buffer,300,f))
-    //    {
-    //        if (i == 1)
-    //        {
 
         if(strcmp(buffer, "Pokemons\r\n") == 0)
             return NULL;
@@ -248,15 +237,11 @@ Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterL
             MasterListTypes[TypeIndex] = CreateType(TempType);
         }
 
-//    }
-    //        }
 
     fgets(buffer, 300, f);
     int indexA = -1;
     char Type1[15];
     char AgainstList[40];
-    //        if (i ==2 )
-    //        {
     while (strcmp(buffer,"Pokemons\r\n") != 0)
     {
         char* TempType2 = strtok(buffer, "\t");
@@ -300,9 +285,7 @@ Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterL
             }
         }
         fgets(buffer,300,f);
-        //        i++;
     }
-    //        }
     char* PokeType;
     char* FinalSpc;
     char* FinalName;
@@ -364,7 +347,7 @@ Battle ConfigureFile(int NumTypes, int CapacityOfTypes, char* path ,PT** MasterL
 
 
 
-
+//////////////// Clearing all the data that their won't be memory leaks. ///////////////////
 status DeletePokedex(Battle b, int NumOfTypes, PT** MasterListTypes)
 {
         for (int i = 0; i < NumOfTypes; ++i)

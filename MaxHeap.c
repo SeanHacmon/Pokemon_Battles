@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
+/// Defining the struct.
 struct MaxHeap_t
 {
     element* Arr;
@@ -22,7 +22,7 @@ struct MaxHeap_t
     printFunction PrintEle;
 };
 
-
+/// Creating the Maxheap object.
 MH CreateHeap(freeFunction FreeH, copyFunction CopyH, equalFunction CompareH ,int MaxCap, char* Name,
               printFunction PrintEle)
 {
@@ -61,7 +61,7 @@ MH CreateHeap(freeFunction FreeH, copyFunction CopyH, equalFunction CompareH ,in
     return mh;
 }
 
-
+/// Destroys the Maxheap.
 GenStatus destroyHeap(MH mh)
 {
     if (mh == NULL)
@@ -81,7 +81,7 @@ GenStatus destroyHeap(MH mh)
     return DeleteSuccess;
 }
 
-
+/// Inserting into the heap.
 GenStatus insertToHeap(MH mh, element node)
 {
     if (node == NULL)
@@ -89,7 +89,6 @@ GenStatus insertToHeap(MH mh, element node)
 
     mh->HeapSize += 1;
     int size = mh->HeapSize - 1;
-//    mh->Arr[size] = mh->CopyEle(node);
     mh->Arr[size] = node;
     while (size > 0 && mh->CompareEle(mh->Arr[Parent(size)], mh->Arr[size]) == -1)
     {
@@ -97,15 +96,13 @@ GenStatus insertToHeap(MH mh, element node)
         tempEle =  mh->Arr[size];
         mh->Arr[size] = mh->Arr[Parent(size)];
         mh->Arr[Parent(size)] = tempEle;
-        //        Swap(&(mh->Arr[size - 1]), &(mh->Arr[Parent(size - 1)]));
         size = Parent(size);
     }
-//    mh->Root = mh->CopyEle(mh->Arr[0]);
     mh->Root = mh->Arr[0];
     return AddSuccess;
 }
 
-
+/// Prints all the elements of the heap.
 void printHeap (MH mh)
 {
     if (mh == NULL)
@@ -137,7 +134,7 @@ void printHeap (MH mh)
 
 }
 
-
+/// Pop the root of the heap.
 element PopMaxHeap(MH mh)
 {
     element newEle = TopMaxHeap(mh);
@@ -156,7 +153,7 @@ element PopMaxHeap(MH mh)
     return max;
 }
 
-
+/// Returns a pointer to the root of the heap.
 element* TopMaxHeap(MH mh)
 {
     if (mh->HeapSize == 0)
@@ -164,13 +161,13 @@ element* TopMaxHeap(MH mh)
     return mh->Arr[0];
 }
 
-
+/// Returns the name of the heap.
 char* getHeapId(MH mh)
 {
     return mh->HeapName;
 }
 
-
+/// Returns the heap size.
 int getHeapCurrentSize(MH mh)
 {
     return mh->HeapSize;
@@ -179,7 +176,7 @@ int getHeapCurrentSize(MH mh)
 
 
 
-
+/// Help function to maintain the heap sorted.
 void MaxHeapify(MH heap, int i) //// making sure the heap will be in the correct order.
 {
     int largest;
@@ -223,20 +220,21 @@ int static Left(int i)
 }
 
 
-
+/// Compare Function to use for the creation of BattleByCategory Object.
 int CompareHeapNames(char* heapName1, char* heapName2) //// Compares between 2 Heap Names.
 {
     if (strcmp(heapName1, heapName2) == 0)
         return 1;
     return 0;
 }
-
+/// Copy Function to use for the creation of BattleByCategory Object.
 MH CopyEntireHeap(MH originalHeap) //// Copying a Heap, Shallow copy.
 {
     return originalHeap;
 }
 
-int SearchInsideHeap(char* name , MH heap) //// Searching an Element inside a heap by it's name.
+/// Searching an Element inside a heap by it's name.
+int SearchInsideHeap(char* name , MH heap) 
 {
     int len = getHeapCurrentSize(heap);
     for (int i = 0; i < len; ++i)
@@ -247,29 +245,9 @@ int SearchInsideHeap(char* name , MH heap) //// Searching an Element inside a he
     return 0;
 }
 
-
+/// Function to help with Testing
 element getObj(MH mh, int i)
 {
     return mh->Arr[i];
 }
 
-
-              //    int index;
-
-
-              //    Element Temp;
-              //        Temp = mh->CopyEle(mh->Arr[size]);
-              //        mh->Arr[size] = mh->CopyEle(mh->Arr[Parent(size)]);
-              //        mh->Arr[Parent(size)] = mh->CopyEle(Temp);
-
-              //        Temp = heap->Arr[i];
-              //        heap->Arr[i] = heap->Arr[largest];
-              //        heap->Arr[largest] = Temp;
-
-              //void Swap(element* ele1, element* ele2)
-              //{
-              //    element Temp;
-              //    Temp = *ele1;
-              //    *ele1 = *ele2;
-              //    *ele2 = Temp;
-              //}

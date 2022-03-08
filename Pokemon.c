@@ -3,12 +3,11 @@
 //
 
 #include "Pokemon.h"
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include "Defs.h"
 #include <string.h>
+
 P* CreatePokemon(char* Nme, char* Spc, float H, float W, int Atk, PT* TypePtr)
 {
     P* Pokemon = (P*) malloc(sizeof(P));
@@ -389,12 +388,3 @@ int HelpPrint(char* TempType1 ,int NumOfTypes, PT** MasterListTypes)
     }
     return TempIndex;
 }
-
-
-
-
-
-///tests
-
-
-

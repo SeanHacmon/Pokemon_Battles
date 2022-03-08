@@ -11,6 +11,7 @@
 #include "BattleByCategory.h"
 
 
+/// Defining the struct.
 struct battle_s
 {
     MH* MaxHeapArr;
@@ -26,7 +27,8 @@ struct battle_s
     printFunction PrintEle;
 };
 
-
+/// Creating a generic struct that will support battle between elements.
+/// It will include inside a generic linklist & a generic maxheap.
 Battle createBattleByCategory(int capacity,int numberOfCategories,char* categories,equalFunction equalElement,
                               copyFunction copyElement,freeFunction freeElement,getCategoryFunction getCategory,
                               getAttackFunction getAttack,printFunction printElement)
@@ -85,21 +87,12 @@ Battle createBattleByCategory(int capacity,int numberOfCategories,char* categori
     return battle;
 }
 
-
+/// Destroys the Battle Structure.
 status destroyBattleByCategory(Battle b)
 {
-//    for (int i = 0; i < b->NumOfCat; ++i)
-//    {
-//        destroyHeap(b->MaxHeapArr[i]);
-//    }
-
     destroyList(b->LinkedList);
     free(b->Cat);
     b->Cat = NULL;
-//    for (int i = 0; i < b->NumOfCat; ++i)
-//    {
-//        free(b->MaxHeapArr[i]);
-//    }
     free(b->MaxHeapArr);
     b->MaxHeapArr = NULL;
     free(b);
@@ -107,6 +100,8 @@ status destroyBattleByCategory(Battle b)
     return success;
 }
 
+
+/// Inserting objects inside the Battle structure.
 status insertObject(Battle b, element elem)
 {
     int index = -1;
@@ -136,11 +131,14 @@ status insertObject(Battle b, element elem)
     return success;
 }
 
+/// using linklist printfunction to print the objects inside the Battle structure.
 void displayObjectsByCategories(Battle b)
 {
     displayList(b->LinkedList);
 }
 
+
+/// Removes an object from the Battle structure.
 element removeMaxByCategory(Battle b,char* category)
 {
     int index = -1;
@@ -167,6 +165,8 @@ int getNumberOfObjectsInCategory(Battle b,char* category)
     return getHeapCurrentSize(b->MaxHeapArr[index]);
 }
 
+
+/// Begins the Battle Between the object that has the best chances to win against the object that was recivied as an argument.
 element fight(Battle b,element elem)
 {
     int Checker = 0;
@@ -301,15 +301,4 @@ element fight(Battle b,element elem)
     return NULL;
 }
 
-                              //int CountAllElements(Battle b, int NumOfCat)
-                              //{
-                              //    NumOfCat = b->NumOfCat;
-                              //    int totalElems = 0;
-                              //    for (int i = 0; i < NumOfCat; ++i)
-                              //    {
-                              //        totalElems += getHeapCurrentSize(b->MaxHeapArr[i]);
-                              //    }
-                              //    return totalElems;
-                              //}
-
-
+            

@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
+/// Defining the structures.
 struct LinkedList_t
 {
     Node* Head;
@@ -28,6 +29,7 @@ struct LSNode
 
 };
 
+///Creating a linklist.
 LS createLinkedList(copyFunction CF, equalFunction SF, freeFunction FF, printFunction PF, equalFunction EQF)
 {
     if (CF == NULL || SF == NULL || FF == NULL || PF == NULL || EQF == NULL)
@@ -58,14 +60,12 @@ GenStatus destroyList(LS ls)
 
     Node* TempNode = ls->Head;
     while (TempNode != NULL)
-//    for (int i = 0; i < ls->Size; ++i)
     {
         ls->Head = ls->Head->Next;
         ls->FreeEle(TempNode->Val);
         free(TempNode);
         TempNode = ls->Head;
     }
-//    ls->FreeEle(TempNode->Val);
     free(ls->Head);
     free(TempNode);
     free(ls);
@@ -73,6 +73,7 @@ GenStatus destroyList(LS ls)
     return DeleteSuccess;
 }
 
+/// Adding a node
 GenStatus appendNode(LS ls, element ele)
 {
     if (ele == NULL)
@@ -100,6 +101,7 @@ GenStatus appendNode(LS ls, element ele)
     return AddSuccess;
 }
 
+/// Removing a specific node in the linklist.
 GenStatus deleteNode(LS ls, element ele)
 {
     Node* curr = ls->Head;
@@ -128,6 +130,7 @@ GenStatus deleteNode(LS ls, element ele)
     return DeleteSuccess;
 }
 
+/// Printing the linklist.
 void displayList (LS ls)
 {
     if (ls->Head == NULL)
@@ -140,6 +143,7 @@ void displayList (LS ls)
     }
 }
 
+/// Searching in the linklist.
 element searchByKeyInList(LS ls, element Ele)
 {
     if (Ele == NULL)
@@ -157,7 +161,8 @@ element searchByKeyInList(LS ls, element Ele)
     }
     return NULL;
 }
-/// tests
+
+/// Returns linklist size.
 int getsize(LS linkedList){
     return linkedList->Size;
 }
@@ -167,40 +172,3 @@ int getsize(LS linkedList){
 
 
 
-
-
-
-
-//bool searchFunction(element key, char *name){
-//    if (key == NULL || name == NULL){
-//        return false;
-//    }
-//    if(strcmp(key, name) == 0){
-//        return true;
-//    }
-//    return false;
-//}
-
-
-
-
-//int compareFunction(LS ls, Element ele)
-//{
-//    int flag = 0;
-//    int num = (int) ls->CopyEle(ele);
-//    if (num / 1 == num)
-//    {
-//        flag = 1;
-//        return flag;
-//    }
-//    char* Name = (char*) ls->CopyEle(ele);
-////    if (strstr())
-////    while (ls->Head->Next != NULL)
-////    {
-////        if (ls->Head->Val == NewEle)
-////            flag = 1;
-////
-////        if (ls->Head. != NULL)
-////
-////    }
-//}

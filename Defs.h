@@ -4,7 +4,6 @@
 
 #ifndef HW3_DEFS_H
 #define HW3_DEFS_H
-//#define buffer 300;
 typedef void* element;
 
 typedef enum e_bool { false,true } bool;
@@ -12,7 +11,6 @@ typedef enum e_status {success, failure } status;
 typedef enum ADT_status {DeleteSuccess, AddSuccess, DeleteFailure, AddFailure} GenStatus;
 typedef status (*freeFunction) (element);
 typedef element (*copyFunction)(element);
-//typedef element (*searchFunction) (element*, element);
 typedef int (*equalFunction) (element, element);
 typedef status (*printFunction)(element);
 typedef char* (*getCategoryFunction)(element);

@@ -66,15 +66,4 @@ int HelpPrint(char* TempType1 ,int NumOfTypes, PT** MasterListTypes);
 P* copyFunction_returnsShellCopyOfPokemon(P* pokemon);
 int isEqualFunction_IfTwoPokemonsHaveTheSameAtk(P *pokemon1, P *pokemon2);
 
-
-
-
-
-
-
-
-
-
-//bool searchFunction_IfPokemonHaveName(P *pokemon, char *name);
-//int isEqualFunction_IfTwoPokemonsHaveTheSameName(P *pokemon1, char *name);
 #endif //HW3_POKEMON_H

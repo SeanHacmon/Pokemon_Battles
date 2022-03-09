@@ -17,8 +17,8 @@ MH CreateHeap(freeFunction FreeH, copyFunction CopyH, equalFunction CompareH , i
 GenStatus destroyHeap(MH);
 GenStatus insertToHeap(MH mh, element node); /// i is the size of the array.
 void printHeap (MH);
-element PopMaxHeap(MH); /// TODO Extract Max !
-element* TopMaxHeap(MH); /// TODO return the highest atk (first node).
+element PopMaxHeap(MH); /// Extract Max.
+element* TopMaxHeap(MH); /// return the node with the highest value (first node).
 char* getHeapId(MH);
 int getHeapCurrentSize(MH);
 void MaxHeapify(MH, int);

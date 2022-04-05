@@ -1,7 +1,7 @@
 # Pokemon_Battles Project
 C Project - Advanced Programming course
 
-# The Code ran on terminal using inputs from the user.
+The Code ran on terminal using inputs from the user.
 
 this project main goal was using data structures, nested structures, handling pointers/ function pointers and building generic ADT's.
 
